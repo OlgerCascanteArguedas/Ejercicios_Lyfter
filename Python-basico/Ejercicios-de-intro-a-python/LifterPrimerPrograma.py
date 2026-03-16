@@ -1,0 +1,5 @@
+print("Hello world")
+print("Ejercicio uno")
+print(1+1)
+print(90 + 430)
+print(4 * 5)
