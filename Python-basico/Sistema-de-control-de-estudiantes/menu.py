@@ -8,9 +8,7 @@ from actions import (
 )
 from data import export_csv, import_csv
 
-students = []
-
-def menu():
+def menu(students):
     while True:
         print("\nMENU")
         print("1. Add students")

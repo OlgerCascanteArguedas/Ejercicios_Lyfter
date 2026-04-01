@@ -1,8 +1,8 @@
 from menu import menu
 
 def main():
-    menu()
+    students = []
+    menu(students)
 
 if __name__ == "__main__":
     main()
-
