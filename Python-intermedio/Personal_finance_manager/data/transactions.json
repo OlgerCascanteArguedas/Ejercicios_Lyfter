@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Salario",
+        "amount": 300.0,
+        "category": "Salario",
+        "transaction_type": "Income"
+    },
+    {
+        "title": "Paquetillo",
+        "amount": 10.0,
+        "category": "Viaje",
+        "transaction_type": "Expense"
+    }
+]
