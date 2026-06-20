@@ -1,10 +1,16 @@
 import json
-import os
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+
+CATEGORIES_FILE = DATA_DIR / "categories.json"
+TRANSACTIONS_FILE = DATA_DIR / "transactions.json"
 
 
 def create_data_folder():
-    if not os.path.exists("data"):
-        os.makedirs("data")
+    DATA_DIR.mkdir(exist_ok=True)
 
 
 def save_data(file_path, data):
@@ -20,8 +26,15 @@ def save_data(file_path, data):
 
 
 def load_data(file_path):
-    if not os.path.exists(file_path):
+    if not file_path.exists():
         return []
 
-    with open(file_path, "r", encoding="utf-8") as file:
-        return json.load(file)
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return json.load(file)
+
+    except json.JSONDecodeError:
+        return []
+
+    except TypeError:
+        return []

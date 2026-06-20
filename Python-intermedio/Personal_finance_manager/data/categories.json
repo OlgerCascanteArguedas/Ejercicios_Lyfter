@@ -1,6 +1,11 @@
 [
-    "Casa",
-    "Carro",
-    "Viaje",
-    "Salario"
+    {
+        "name": "Carro"
+    },
+    {
+        "name": "Casa"
+    },
+    {
+        "name": "Salario"
+    }
 ]

@@ -1,14 +1,20 @@
 [
     {
-        "title": "Salario",
-        "amount": 300.0,
-        "category": "Salario",
-        "transaction_type": "Income"
+        "title": "Gasolina",
+        "amount": 100.0,
+        "category": "Carro",
+        "transaction_type": "Expense"
     },
     {
-        "title": "Paquetillo",
-        "amount": 10.0,
-        "category": "Viaje",
+        "title": "Renta",
+        "amount": 2000.0,
+        "category": "Casa",
         "transaction_type": "Expense"
+    },
+    {
+        "title": "Salario",
+        "amount": 3000.0,
+        "category": "Salario",
+        "transaction_type": "Income"
     }
 ]

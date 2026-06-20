@@ -1,11 +1,12 @@
 import FreeSimpleGUI as sg
 
-from business_logic import FinanceManager
-from persistence import save_data, load_data
-
-
-CATEGORIES_FILE = "data/categories.json"
-TRANSACTIONS_FILE = "data/transactions.json"
+from business_logic import FinanceManager, INCOME, EXPENSE
+from persistence import (
+    CATEGORIES_FILE,
+    TRANSACTIONS_FILE,
+    save_data,
+    load_data
+)
 
 
 def load_initial_data(manager):
@@ -17,12 +18,24 @@ def load_initial_data(manager):
 
 
 def save_all_data(manager):
-    save_data(CATEGORIES_FILE, manager.categories)
-    save_data(TRANSACTIONS_FILE, manager.get_transactions_as_dicts())
+    save_data(
+        CATEGORIES_FILE,
+        manager.get_categories_as_dicts()
+    )
+
+    save_data(
+        TRANSACTIONS_FILE,
+        manager.get_transactions_as_dicts()
+    )
 
 
 def create_main_window(manager):
-    headings = ["Title", "Amount", "Category", "Type"]
+    headings = [
+        "Title",
+        "Amount",
+        "Category",
+        "Type"
+    ]
 
     layout = [
         [
@@ -129,8 +142,10 @@ def handle_add_category(manager):
         if event == "Save":
             try:
                 category_name = values["-CATEGORY-"]
+
                 manager.add_category(category_name)
                 save_all_data(manager)
+
                 sg.popup("Category added successfully")
                 break
 
@@ -141,14 +156,17 @@ def handle_add_category(manager):
 
 
 def handle_add_transaction(manager, transaction_type):
-    if not manager.categories:
+    categories = manager.get_categories_names()
+
+    if not categories:
         sg.popup_error("Please create a category first.")
         return
 
     window_title = f"Add {transaction_type}"
+
     window = create_transaction_window(
         window_title,
-        manager.categories
+        categories
     )
 
     while True:
@@ -171,6 +189,7 @@ def handle_add_transaction(manager, transaction_type):
                 )
 
                 save_all_data(manager)
+
                 sg.popup(f"{transaction_type} added successfully")
                 break
 
@@ -198,11 +217,11 @@ def run_app():
             refresh_main_window(window, manager)
 
         elif event == "Add Expense":
-            handle_add_transaction(manager, "Expense")
+            handle_add_transaction(manager, EXPENSE)
             refresh_main_window(window, manager)
 
         elif event == "Add Income":
-            handle_add_transaction(manager, "Income")
+            handle_add_transaction(manager, INCOME)
             refresh_main_window(window, manager)
 
     window.close()
