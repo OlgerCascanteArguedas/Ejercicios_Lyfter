@@ -150,16 +150,12 @@ class FinanceManager:
             if not all(field in transaction_data for field in required_fields):
                 continue
 
-            category = self._find_category(transaction_data["category"])
-
-            if category is None:
+            try:
+                self.add_transaction(
+                    transaction_data["title"],
+                    transaction_data["amount"],
+                    transaction_data["category"],
+                    transaction_data["transaction_type"]
+                )
+            except ValueError:
                 continue
-
-            transaction = Transaction(
-                transaction_data["title"],
-                transaction_data["amount"],
-                category,
-                transaction_data["transaction_type"]
-            )
-
-            self._transactions.append(transaction)

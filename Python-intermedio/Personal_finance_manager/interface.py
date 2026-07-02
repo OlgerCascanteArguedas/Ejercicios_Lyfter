@@ -158,10 +158,6 @@ def handle_add_category(manager):
 def handle_add_transaction(manager, transaction_type):
     categories = manager.get_categories_names()
 
-    if not categories:
-        sg.popup_error("Please create a category first.")
-        return
-
     window_title = f"Add {transaction_type}"
 
     window = create_transaction_window(

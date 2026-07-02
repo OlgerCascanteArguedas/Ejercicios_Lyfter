@@ -202,6 +202,52 @@ class TestFinanceManager(unittest.TestCase):
             [["Lunch", 20.0, "Food", "Expense"]]
         )
 
+    def test_load_transactions_skips_non_numeric_amount(self):
+        self.manager.load_categories([{"name": "Food"}])
+
+        self.manager.load_transactions([
+            {
+                "title": "Lunch",
+                "amount": "abc",
+                "category": "Food",
+                "transaction_type": EXPENSE
+            },
+            {
+                "title": "Dinner",
+                "amount": 30,
+                "category": "Food",
+                "transaction_type": EXPENSE
+            }
+        ])
+
+        self.assertEqual(
+            self.manager.get_transactions_as_table(),
+            [["Dinner", 30.0, "Food", "Expense"]]
+        )
+
+    def test_load_transactions_skips_invalid_transaction_type(self):
+        self.manager.load_categories([{"name": "Food"}])
+
+        self.manager.load_transactions([
+            {
+                "title": "Lunch",
+                "amount": 20,
+                "category": "Food",
+                "transaction_type": "Invalid"
+            },
+            {
+                "title": "Dinner",
+                "amount": 30,
+                "category": "Food",
+                "transaction_type": EXPENSE
+            }
+        ])
+
+        self.assertEqual(
+            self.manager.get_transactions_as_table(),
+            [["Dinner", 30.0, "Food", "Expense"]]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
