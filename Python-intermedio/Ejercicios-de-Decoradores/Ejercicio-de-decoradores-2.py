@@ -12,4 +12,3 @@ def validar_numeros(func):
 
         return func(*args, **kwargs)
 
-    return wrapper
