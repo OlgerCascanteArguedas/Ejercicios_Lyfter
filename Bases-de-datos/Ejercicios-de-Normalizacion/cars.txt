@@ -1,0 +1,53 @@
+Ejercicio Cars
+1. Objetivo
+
+Separar los datos de vehículos, propietarios y seguros para eliminar información repetida y alcanzar la Tercera Forma Normal.
+
+2. Tabla original
+
+La tabla mezcla:
+
+Datos del vehículo.
+Datos del propietario.
+Datos del seguro.
+
+La clave compuesta sería:
+
+(VIN, OwnerID)
+3. Problemas detectados
+Los datos del vehículo se repiten.
+Los datos del propietario podrían repetirse.
+Los datos del vehículo dependen solo del VIN.
+Los datos del propietario dependen solo de OwnerID.
+La información del seguro está mezclada con la propiedad.
+Dave tiene información incompleta.
+4. Primera Forma Normal — 1FN
+
+La tabla cumple con 1FN porque cada celda contiene un solo valor y cada fila representa una relación entre un vehículo y un propietario.
+
+5. Segunda Forma Normal — 2FN
+
+Se eliminan las dependencias parciales creando:
+
+Cars
+Owners
+CarOwnership
+Cars guarda los datos del vehículo.
+Owners guarda los datos del propietario.
+CarOwnership conecta vehículos y propietarios.
+6. Tercera Forma Normal — 3FN
+
+La información de seguros se separa en tablas independientes.
+
+Las tablas finales son:
+
+Cars
+Owners
+CarOwnership
+InsuranceCompanies
+InsurancePolicies
+7. Relaciones finales
+Cars 1 ─── N CarOwnership
+Owners 1 ─── N CarOwnership
+CarOwnership 1 ─── N InsurancePolicies
+InsuranceCompanies 1 ─── N InsurancePolicies
