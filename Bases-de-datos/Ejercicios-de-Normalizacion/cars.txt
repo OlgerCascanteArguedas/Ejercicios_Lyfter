@@ -51,3 +51,32 @@ Cars 1 ─── N CarOwnership
 Owners 1 ─── N CarOwnership
 CarOwnership 1 ─── N InsurancePolicies
 InsuranceCompanies 1 ─── N InsurancePolicies
+
+
+CAMBIOS REALIZADOS AL EJERCICIO CARS
+
+1. Separación del modelo del vehículo
+Se creó la tabla Vehicle_Models para almacenar Make, Model y Manufacture_Year, evitando repetir estos datos en cada automóvil.
+
+2. Actualización de Cars
+La tabla Cars ahora almacena únicamente:
+- VIN
+- Vehicle_Model_ID
+- Color
+
+3. Separación de los tipos de póliza
+Se creó la tabla Policy_Types para guardar una sola vez cada tipo de cobertura.
+
+4. Relación entre vehículos y pólizas
+Se creó la tabla Car_Policy para relacionar vehículos con los tipos de póliza, permitiendo que una misma cobertura sea utilizada por muchos vehículos.
+
+Resultado:
+Se reduce la redundancia y se mejora el cumplimiento de la Tercera Forma Normal (3FN).
+
+Relaciones 
+
+Manufacturers 1 ─── N VehicleModels
+VehicleModels 1 ─── N Cars
+Cars N ─── N Owners
+Cars N ─── N PolicyTypes
+InsuranceCompanies 1 ─── N CarPolicy
