@@ -1,0 +1,82 @@
+Ejercicio Cars
+1. Objetivo
+
+Separar los datos de vehículos, propietarios y seguros para eliminar información repetida y alcanzar la Tercera Forma Normal.
+
+2. Tabla original
+
+La tabla mezcla:
+
+Datos del vehículo.
+Datos del propietario.
+Datos del seguro.
+
+La clave compuesta sería:
+
+(VIN, OwnerID)
+3. Problemas detectados
+Los datos del vehículo se repiten.
+Los datos del propietario podrían repetirse.
+Los datos del vehículo dependen solo del VIN.
+Los datos del propietario dependen solo de OwnerID.
+La información del seguro está mezclada con la propiedad.
+Dave tiene información incompleta.
+4. Primera Forma Normal — 1FN
+
+La tabla cumple con 1FN porque cada celda contiene un solo valor y cada fila representa una relación entre un vehículo y un propietario.
+
+5. Segunda Forma Normal — 2FN
+
+Se eliminan las dependencias parciales creando:
+
+Cars
+Owners
+CarOwnership
+Cars guarda los datos del vehículo.
+Owners guarda los datos del propietario.
+CarOwnership conecta vehículos y propietarios.
+6. Tercera Forma Normal — 3FN
+
+La información de seguros se separa en tablas independientes.
+
+Las tablas finales son:
+
+Cars
+Owners
+CarOwnership
+InsuranceCompanies
+InsurancePolicies
+7. Relaciones finales
+Cars 1 ─── N CarOwnership
+Owners 1 ─── N CarOwnership
+CarOwnership 1 ─── N InsurancePolicies
+InsuranceCompanies 1 ─── N InsurancePolicies
+
+
+CAMBIOS REALIZADOS AL EJERCICIO CARS
+
+1. Separación del modelo del vehículo
+Se creó la tabla Vehicle_Models para almacenar Make, Model y Manufacture_Year, evitando repetir estos datos en cada automóvil.
+
+2. Actualización de Cars
+La tabla Cars ahora almacena únicamente:
+- VIN
+- Vehicle_Model_ID
+- Color
+
+3. Separación de los tipos de póliza
+Se creó la tabla Policy_Types para guardar una sola vez cada tipo de cobertura.
+
+4. Relación entre vehículos y pólizas
+Se creó la tabla Car_Policy para relacionar vehículos con los tipos de póliza, permitiendo que una misma cobertura sea utilizada por muchos vehículos.
+
+Resultado:
+Se reduce la redundancia y se mejora el cumplimiento de la Tercera Forma Normal (3FN).
+
+Relaciones 
+
+Manufacturers 1 ─── N VehicleModels
+VehicleModels 1 ─── N Cars
+Cars N ─── N Owners
+Cars N ─── N PolicyTypes
+InsuranceCompanies 1 ─── N CarPolicy

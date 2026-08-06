@@ -1,0 +1,69 @@
+# Ejercicio Orders
+
+## 1. Objetivo
+
+Separar la información de clientes, órdenes y productos para eliminar datos repetidos y llegar a la Tercera Forma Normal.
+
+## 2. Tabla original
+
+La tabla mezcla:
+
+* Datos del cliente.
+* Datos de la orden.
+* Datos del producto.
+* Cantidad y solicitud especial.
+
+La clave compuesta sería:
+
+(OrderID, ItemID)
+
+## 3. Problemas detectados
+
+* Los datos del cliente se repiten.
+* Los productos y precios se repiten.
+* Algunos datos dependen solo de `OrderID`.
+* Otros datos dependen solo de `ItemID`.
+* La orden `002` tiene dos direcciones distintas.
+
+## 4. Primera Forma Normal — 1FN
+
+La tabla cumple con 1FN porque cada celda contiene un solo valor y cada producto de una orden aparece en una fila diferente.
+
+No se modifican las tablas todavía.
+
+## 5. Segunda Forma Normal — 2FN
+
+Se eliminan las dependencias parciales separando la tabla en:
+
+Orders
+Items
+OrderDetails
+
+* `Orders` guarda los datos de la orden.
+* `Items` guarda los productos.
+* `OrderDetails` guarda cantidad y solicitud especial.
+
+## 6. Tercera Forma Normal — 3FN
+
+Se separan los datos del cliente de la tabla `Orders`.
+
+Las tablas finales son:
+
+```text
+Customers
+Orders
+Items
+OrderDetails
+```
+
+## 7. Relaciones finales
+
+```text
+Customers 1 ─── N Orders
+Orders 1 ─── N OrderDetails
+Items 1 ─── N OrderDetails
+```
+
+`OrderDetails` conecta las órdenes con los productos.
+
+---
