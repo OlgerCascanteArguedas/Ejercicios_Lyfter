@@ -1,0 +1,52 @@
+# Ejercicios de Teoría de Conjuntos
+
+Conjuntos:
+
+All = {1,2,3,4,5,6,7,8,9,10}
+Even = {2,4,6,8,10}
+Odd = {1,3,5,7,9}
+
+## 1. Even ∪ Odd (Unión)
+
+{1,2,3,4,5,6,7,8,9,10}
+
+Explicación:
+La unión contiene todos los elementos que pertenecen a Even o a Odd.
+
+## 2. Even ∩ Odd (Intersección)
+
+{}
+
+Explicación:
+No existe ningún número que sea par e impar al mismo tiempo.
+
+## 3. All - Odd (Diferencia)
+
+{2,4,6,8,10}
+
+Explicación:
+Se eliminan del conjunto All todos los elementos que pertenecen a Odd.
+
+## 4. C(Even) (Complemento de Even respecto a All)
+
+{1,3,5,7,9}
+
+Explicación:
+El complemento de Even son todos los elementos de All que no pertenecen a Even.
+
+## 5. C(Odd - All)
+
+Paso 1:
+Odd - All = {}
+
+Porque todos los elementos de Odd ya pertenecen a All.
+
+Paso 2:
+C({}) = All
+
+Resultado:
+
+{1,2,3,4,5,6,7,8,9,10}
+
+Explicación:
+El complemento del conjunto vacío respecto a All es el conjunto universal completo.
