@@ -92,6 +92,11 @@ def create_task():
             "error": "El identificador es obligatorio."
         }), 400
 
+    if not isinstance(data["id"], int):
+        return jsonify({
+            "error": "El identificador debe ser un número entero."
+        }), 400
+
     # Validar ID duplicado
     for task in tasks:
         if task["id"] == data["id"]:
