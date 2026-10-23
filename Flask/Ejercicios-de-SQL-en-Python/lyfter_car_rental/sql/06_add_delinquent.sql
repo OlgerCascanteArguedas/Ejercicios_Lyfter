@@ -1,0 +1,4 @@
+
+ALTER TABLE lyfter_car_rental.users
+ADD COLUMN IF NOT EXISTS is_delinquent
+BOOLEAN NOT NULL DEFAULT FALSE;
